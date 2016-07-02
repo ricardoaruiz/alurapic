@@ -28,6 +28,16 @@ angular.module('minhasDiretivas', [])
 
         return ddo;
 
+    })
+    .directive('minhaFoto', function() {
+        return {
+            restrict: 'E',
+            scope : {
+                url : '@',
+                titulo : '@'
+            },
+            template : '<img class="img-responsive center-block" src="{{url}}" alt="{{titulo}}">'
+        }
     });    
 
 

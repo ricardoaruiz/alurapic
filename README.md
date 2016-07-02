@@ -4,6 +4,8 @@ Curso AngularJS: crie webapps poderosas
 - 1 - Início
 
 	1) Na pasta "arquivos-suporte/inicio" existe um zip com o projeto inicial e as instruções para configurar o ambiente de desenvolvimento.
+	2) Na pasta "arquivos-suporte/aulas" existe um arquivo para cada aula que deve ser seguida no curso.
+	3) Na pasta "arquivos-suporte/exercicios" existe um arquivo com exercícios para cada aula que deve ser feito no final da mesma.
 
 - 2 - Construindo o alicerce da nossa aplicação
 
@@ -74,3 +76,17 @@ Curso AngularJS: crie webapps poderosas
 	3) Ter o módulo ngAnimate carregado não é suficiente. Você deve criar seus estilos CSS pegando carona nas classes adicionadas dinamicamente pelo Angular, quando este módulo está presente. Existem uma série de classes, porém foque na ng-leave-active. Como este é um treinamento de Angular e não de CSS, sinta-se livre para consultar o CSS na explicação do capítulo, inclusive para saber onde gravar o CSS e como adicioná-lo na marcação.
 
 	4) Agora que sua lista é filtrada e elementos removidos sofrem animações, repare que a cada dígito o two-way data binding do Angular atualiza em$scope a propriedade que guarda o que o usuário digitou através da diretiva ng-model. Podemos dar um tempo antes que ng-model atualize a propriedade em $scope, que é usada por ng-repeat para filtrar a lista. Usamos para isso a diretiva ng-model-options. Lembre-se que ela trabalha com milissegundos, sendo assim, postergue em meio segundo a atualização.
+
+- 6 - Dividir para conquistar!	
+
+	1) Por mais que o Angular seja feito para criação de SPA's, não faz sentido colocar tudo numa única view, principalmente se o escopo do seu sistema for grande. O primeiro passo é extrair todo o conteúdo da tag body de index.html para um arquivo em separado. Adote a convenção de que todas as views parciais ficarão dentro de public/partials (em inglês). Para o conteúdo extraído, o nome da view será principal.html. Não esqueça que uma view parcial não possui as tag's head nem body. As dicas não foram suficientes? Você pode recorrer sempre à explicação do capítulo, mas encare o desafio!
+
+	2) Com a parcial principal.html criada, abra uma lacuna em index.html usando a diretiva do sistema de rotas do Angular. Ainda lembra seu nome? Ela é muito importante, porque todo o conteúdo das parciais serão "jogadas" para dentro dela. Porém, vale frisar que apenas uma parcial por vez pode ser exibida.
+
+	3) Neste ponto você tem a parcial criada e a lacuna na view index.html . Chegou a hora de habilitar o sistema de rotas na aplicação (ainda não configure as rotas). Lembre-se que dois passos são necessários: importar o script do módulo de rotas e declará-lo como dependência no módulo alurapic. Dica: o nome do módulo é ngRoute.
+
+	4) Muito bem! O Angular não fez curso de adivinhação para saber como exibir suas views parciais. Podem existir zilhões delas em seu projeto e no mundo Web navegamos entre páginas através de links que acessam URL's. A questão é que essas URL's não podem ser URL's acessadas diretamente do nosso servidor, caso contrário as parciais seriam baixadas diretamente, a página seria recarregada (matando a SPA, que nunca recarrega sua página durante uso) e pior: como a parcial não tem head nem body, ela não seria exibida corretamente. Para resolver esse problema, podemos registrar URL's de 'mentirinha' no sistema de rotas do Angular. Essas URL's não acessam um recurso diretamente no servidor, elas são processadas no lado do cliente através do Angular, que traduz aquela URL em uma chamada Ajax que carrega a parcial para aquela URL. Como é o Angular que faz esse processo, ele se encarrega de incluir a parcial dentro da diretiva ng-view em index.html. Configure duas rotas (você precisará injetar um artefato do angular responsável por isso, lembra?): a primeira com o endereço /fotos, associada com controller FotosController. Não esqueça também de indicar qual template será carregado (parcial). A segunda rota é aquele disparada quando o usuário acessar uma rota que não existe, que por sua vez redirecionará o usuário para /fotos.
+
+	5) Faça um teste. Acesse a URL localhost:3000/#/fotos ou localhost:3000/index.html#/fotos. Repare que o conteúdo de index.html é trocado pelo conteúdo da parcial. Não funcionou? Reveja seus passos e consulte a explicação do capítulo para verificar se deixou alguma coisa de fora das configurações.
+
+	6) Habilite o HTML5MODE no sistema de rotas e faça um teste sem usar o hash, por exemplo, acessando localhost:3000/fotos. Só não esqueça de adicionar o base em index.html, caso contrário a rota não funcionará.
