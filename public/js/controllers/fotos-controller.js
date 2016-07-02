@@ -1,6 +1,7 @@
 angular.module('alurapic').controller('FotosController', function($scope, $http){
 
     $scope.fotos = [];
+    $scope.filtro = '';
 
     //Utilizando o success/error com arrow function
     $http.get('/v1/fotos')
