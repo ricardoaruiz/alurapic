@@ -96,6 +96,7 @@ Curso AngularJS: crie webapps poderosas
 - 7 - Precisamos alimentar esse sistema
 
 	Está pronto para criar uma nova parcial e usar todo o poder de validação do Angular? Como de costume, neste exercício será fornecido os passos gerais que devem ser implementados para que você consiga concretizar o que foi ensinado no capítulo.
+
 	1) O primeiro passo será adicionar um botão ao lado da entrada do usuário, em index.html, que ao ser clicado levará o usuário para a parcial foto.html. Segue a "cola" da estrutra do HTML, isso porque a intenção é focar no Angular:
 
 		<!-- public/partials/principal.html -->
@@ -178,3 +179,17 @@ Curso AngularJS: crie webapps poderosas
 	7) Exiba a mensagem com possíveis erros de validação. Lembre-se da diretiva ng-show para exibição condicional de elementos na página.
 
 	8) Integre FotoController com o servidor, através de $http.post para enviar os dados e garantir a persistência das informações cadastradas. Atenção: você precisa saber se o formulário está válido ou não antes de enviar os dados.
+
+- 8 - Dados inconsistentes? Precisamos removê-los ou alterá-los!	
+
+	1) Cada painel terá os botões Editar e Remover. Adicione uma âncora para o Editar e um botão para o Remover.
+
+	2) O Editar deve ter em seu href o endereço para a rota /fotos/edit/, porém deve ser completada com o ID da foto. Use uma AE (Angular Expression) para isso. Já o botão Remover chamará a função remover em FotoController, com a diferença de que passará como parâmetro a foto que desejamos remover.
+
+	3) Em FotosController, implemente a função remover. Ela deve fazer uso de $http.delete.
+
+	4) principal.html também exibirá mensagens de sucesso ou fracasso para a operação de remoção. Adicione a marcação correspondente e faça as alterações necessárias em FotosController para que guarde corretamente as mensagens que serão exibidas na view. Use splice do array para remover o elemento de $scope.fotos, evitando assim uma requisição ao servidor.
+
+	5) Com a remoção funcionando, hora de atacar a edição. O sistema de rotas do Angular ainda não possui uma rota para esta tarefa. Crie-a usando o padrão /fotos/edit/:fotoId. Tanto o controller quanto o template serão os mesmos usados para inclusão.
+
+	6) Como usamos o mesmo controller e template da inclusão, nosso controller precisará saber se estamos incluindo ou alterando um formulário, para saber que ação tomar. Implemente essa funcionalidade e use $http.put para atualizar dados. Lembre-se do papel de $routeParams.
