@@ -8,13 +8,14 @@ angular.module('alurapic', ['minhasDiretivas','ngAnimate','ngRoute'])
         $locationProvider.html5Mode(true);
 
         $routeProvider
-            .when('/fotos',
-            {
+            .when('/fotos', {
                 templateUrl: 'partials/principal.html',
                 controller: 'FotosController'
             })
             .when('/fotos/new', {
-                templateUrl: 'partials/foto.html'
-            }).otherwise({ redirectTo : '/fotos' });
-
+                templateUrl: 'partials/foto.html',
+                controller: 'FotoController'
+            }).otherwise({ 
+                redirectTo : '/fotos' 
+            });
     })

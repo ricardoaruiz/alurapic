@@ -3,8 +3,10 @@ Curso AngularJS: crie webapps poderosas
 
 - 1 - Início
 
-	1) Na pasta "arquivos-suporte/inicio" existe um zip com o projeto inicial e as instruções para configurar o ambiente de desenvolvimento.
+	1) Na pasta "arquivos-suporte/inicio" existe um zip com o projeto inicial
+	
 	2) Na pasta "arquivos-suporte/aulas" existe um arquivo para cada aula que deve ser seguida no curso.
+	
 	3) Na pasta "arquivos-suporte/exercicios" existe um arquivo com exercícios para cada aula que deve ser feito no final da mesma.
 
 - 2 - Construindo o alicerce da nossa aplicação
@@ -90,3 +92,89 @@ Curso AngularJS: crie webapps poderosas
 	5) Faça um teste. Acesse a URL localhost:3000/#/fotos ou localhost:3000/index.html#/fotos. Repare que o conteúdo de index.html é trocado pelo conteúdo da parcial. Não funcionou? Reveja seus passos e consulte a explicação do capítulo para verificar se deixou alguma coisa de fora das configurações.
 
 	6) Habilite o HTML5MODE no sistema de rotas e faça um teste sem usar o hash, por exemplo, acessando localhost:3000/fotos. Só não esqueça de adicionar o base em index.html, caso contrário a rota não funcionará.
+
+- 7 - Precisamos alimentar esse sistema
+
+	Está pronto para criar uma nova parcial e usar todo o poder de validação do Angular? Como de costume, neste exercício será fornecido os passos gerais que devem ser implementados para que você consiga concretizar o que foi ensinado no capítulo.
+	1) O primeiro passo será adicionar um botão ao lado da entrada do usuário, em index.html, que ao ser clicado levará o usuário para a parcial foto.html. Segue a "cola" da estrutra do HTML, isso porque a intenção é focar no Angular:
+
+		<!-- public/partials/principal.html -->
+
+		<div class="jumbotron">
+		    <h1 class="text-center">Alurapic</h1>
+		</div>
+
+		<div class="row">
+		    <div class="col-md-12">
+		        <form>
+
+		            <!-- Novidade! -->
+
+		             <div class="input-group">
+		                <span class="input-group-btn">
+		                    <a href="/fotos/new" class="btn btn-primary" type="button">
+		                        Nova foto
+		                    </a>
+		                </span>
+		                <input class="form-control" placeholder="filtrar pelo título da foto" ng-model="filtro" ng-model-options="{ debounce: 500 }">
+		            </div> 
+
+		            <!-- fim novidade! -->
+
+		        </form>
+		    </div> <!-- fim col-md-12 -->
+		</div> <!-- fim row -->
+
+		<div class="row">
+		    <meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
+		        <minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}">
+		        </minha-foto>
+		    </meu-painel>
+		</div>
+
+	2) Veja que o link aponta para a rota /foto/news. O controlador desta rota ainda não existe em main.js. Cadastre-o como FotoController e mantenha à parcial foto.html, que ainda será criada.
+
+	3) Crie a parcial foto.html. Mais uma "colher de chá", segue o HTML da página:
+
+		<!-- public/partials/foto.html -->
+
+		<div class="page-header text-center">
+		    <h1>{{foto.titulo}}</h1>
+		</div>
+
+		<form name="formulario" class="row">
+		    <div class="col-md-6">
+		        <div class="form-group">
+		            <label>Título</label>
+		            <input name="titulo" class="form-control" ng-model="foto.titulo">    
+		        </div>
+		        <div class="form-group">
+		            <label>URL</label>
+		            <input name="url" class="form-control" ng-model="foto.url">
+		        </div>
+		        <div class="form-group">
+		            <label>Descrição</label>
+		            <textarea name="descricao" class="form-control" ng-model="foto.descricao">
+		            </textarea>
+		        </div>
+
+		        <button type="submit" class="btn btn-primary">
+		            Salvar
+		        </button>
+		         <a href="/" class="btn btn-primary">Voltar</a>
+		        <hr>
+		    </div>
+		    <div class="col-md-6">
+		        <minha-foto></minha-foto>
+		    </div>
+		</form>
+
+	4) Crie FotoController em public/js/foto-controller.js. Não esqueça de importá-lo em index.html.
+
+	5) Inicialmente, imprima no console os dados da foto quando o usuário submeter o formulário. Lembra qual diretiva você utiliza quando quer chamar um código em seu controller no momento da submissão do formulário? Não esqueça de adicionar um botão para submeter o formulário.
+
+	6) Depois que você conseguir exibir no console do seu navegador os dados da foto capturada, já pode validar o formulário com Angular. Dica: não esqueça de desativar a validação do HTML e lembre-se do papel do atributo name do formulário e sua relação com o objeto formulário criado implicitamente pelo Angular. Faça com que o título e a URL sejam obrigatórios, inclusive não aceite um título com mais de 20 caracteres. Não lembra tudo de cabeça? Consulte a explicação e o vídeo do capítulo que estão sempre à disposição.
+
+	7) Exiba a mensagem com possíveis erros de validação. Lembre-se da diretiva ng-show para exibição condicional de elementos na página.
+
+	8) Integre FotoController com o servidor, através de $http.post para enviar os dados e garantir a persistência das informações cadastradas. Atenção: você precisa saber se o formulário está válido ou não antes de enviar os dados.
