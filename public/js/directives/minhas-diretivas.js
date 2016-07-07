@@ -38,7 +38,17 @@ angular.module('minhasDiretivas', [])
             },
             template : '<img class="img-responsive center-block" src="{{url}}" alt="{{titulo}}">'
         }
-    });    
+    })
+    .directive('meuBotaoPerigo', function() {
+        return {
+            restrict: 'E',
+            scope: {
+                nome: '@',
+                acao: '&'
+            },
+            template: '<button ng-click="acao()" class="btn btn-danger btn-block">{{nome}}</button>'
+        }
+    });  
 
 
     
