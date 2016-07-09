@@ -238,4 +238,10 @@ Curso AngularJS: crie webapps poderosas
 
 	2) Altere FotoController para usar o novo serviço.
 
+- 12 - Componentizar ainda é o melhor investimento: precisamos saber mais sobre diretivas!
+
+	Está pronto para criar a diretiva que permite focar qualquer elemento da nossa página quando um cadastro de foto for realizado? Lembre-se que você precisará manipular DOM e o local indicado para isso são nas diretivas, não nos controllers. Passos gerais da tarefa:
 	
+	1) Você aprendeu que $watch permite executarmos um código toda vez que uma propriedade de algum objeto mudar. Excelente, mas também aprendeu que se houver outra solução que não dependa de watcher, melhor será para o desempenho da sua aplicação. Watchers em si não são o problema, o problema são quando o número deles é exorbitante. Crie a diretiva meuFocus no módulo minhasDiretivas. Ela deve usar scope.on para escutar ao evento fotoCadastrada. Quando evento for disparado, você precisará focar o elemento no qual a diretiva foi atribuída. Ficou com dúvida? A explicação do capítulo pode ajudá-lo, aliás, uma boa oportunidade para fazer uma revisão. Só não esqueça que quem disparará o evento será o serviço CadastroDeFotos através de $rootScope.
+
+	2) Com a diretiva meuFocus criada, adicione-a ao botão Voltar da parcial foto.html. Salve uma foto e verifique se o botão Voltar ganha o foco.

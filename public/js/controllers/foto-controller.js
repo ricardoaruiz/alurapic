@@ -1,7 +1,9 @@
 /**
  * recursoFoto está sendo injetado pelo angular, pois está definido em "meus-servicos.js" como uma factory 
  */
-angular.module('alurapic').controller('FotoController', function($scope, recursoFoto, cadastroFoto, $routeParams){
+angular.module('alurapic').controller('FotoController', 
+    ['$scope', 'recursoFoto', 'cadastroFoto', '$routeParams', 
+    function($scope, recursoFoto, cadastroFoto, $routeParams){
 
     $scope.foto = {};
     $scope.mensagem = '';
@@ -32,4 +34,4 @@ angular.module('alurapic').controller('FotoController', function($scope, recurso
             });
         }
     }
-});
+}]);

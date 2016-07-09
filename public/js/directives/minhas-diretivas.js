@@ -48,7 +48,35 @@ angular.module('minhasDiretivas', [])
             },
             template: '<button ng-click="acao()" class="btn btn-danger btn-block">{{nome}}</button>'
         }
-    });  
+    })
+    .directive('meuFocus', function() {
+        return {
+            restrict : 'A',
+            link : function(scope, element) {
+                scope.$on('fotoCadastrada', function() {
+                    //element é um objeto do jqlite (não é um jquery completo) e por isso
+                    //quando fazemos element[0] estamos com o objeto JS puro.
+                    element[0].focus();
+                })
+            }
+        }
+    })
+    .directive('meusTitulos', function() {
+        return {
+            restrict : 'E',
+            template : '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>',
+            controller : function($scope, recursoFoto) {
+                recursoFoto.query(
+                    function(fotos){
+                        $scope.titulos = fotos.map(function(foto) {
+                            return foto.titulo;
+                        });
+                    }
+                );
+                
+            }
+        };
+    })
 
 
     

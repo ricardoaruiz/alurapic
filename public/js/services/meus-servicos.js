@@ -9,7 +9,7 @@ angular.module('alurapic')
     });
 
 })
-.factory('cadastroFoto', function(recursoFoto, $q) {
+.factory('cadastroFoto', function(recursoFoto, $q, $rootScope) {
     return {
         salvar : function(foto){
 
@@ -17,6 +17,7 @@ angular.module('alurapic')
              if(foto._id) {
                   recursoFoto.update({fotoId : foto._id}, foto,
                     function() {
+                        $rootScope.$broadcast('fotoCadastrada');
                         resolve({
                             mensagem : 'Foto ' + foto.titulo + ' alterada com sucesso',
                             inclusao: false
@@ -34,6 +35,7 @@ angular.module('alurapic')
                   
                   recursoFoto.save(foto,
                     function() {
+                        $rootScope.$broadcast('fotoCadastrada');
                         resolve({
                             mensagem : 'Foto ' + foto.titulo + ' incluída com sucesso',
                             inclusao: true
