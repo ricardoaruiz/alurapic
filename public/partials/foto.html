@@ -27,7 +27,8 @@
             <select class="form-control" 
                 ng-controller="GruposController"
                 ng-model="foto.grupo"
-                ng-options="grupo._id as (grupo.nome | uppercase) for grupo in grupos">
+                ng-options="grupo._id as (grupo.nome | uppercase) for grupo in grupos"
+                required>
                 <option value="">Selecione um grupo</option>
             </select>
         </div>      

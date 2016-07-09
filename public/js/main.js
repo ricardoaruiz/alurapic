@@ -1,4 +1,4 @@
-angular.module('alurapic', ['minhasDiretivas','ngAnimate','ngRoute'])
+angular.module('alurapic', ['ngAnimate','ngRoute', 'ngResource', 'minhasDiretivas'])
     .config(function($routeProvider, $locationProvider){
 
         // configura o angular a trabalhar no modo html5 não precisando passar o "#" na url para o 

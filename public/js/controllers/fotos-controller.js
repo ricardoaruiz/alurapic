@@ -1,51 +1,35 @@
-angular.module('alurapic').controller('FotosController', function($scope, $http){
+/**
+ * recursoFoto está sendo injetado pelo angular, pois está definido em "meus-servicos.js" como uma factory 
+ */
+angular.module('alurapic').controller('FotosController', function($scope, recursoFoto){
 
     $scope.fotos = [];
     $scope.filtro = '';
     $scope.mensagem = '';
 
-    //Utilizando o success/error com arrow function
-    $http.get('/v1/fotos')
-        .success(fotos => $scope.fotos = fotos)
-        .error(error => console.log(error));
-
-    //Utilizando o success/error        
-    /*
-    $http.get('/v1/fotos')
-        .success(function(fotos) {
+    recursoFoto.query(
+        function(fotos){
             $scope.fotos = fotos;
-        })
-        .error(function(error) {
-            console.log(error);
-        });
-    */
-
-    //Utilizando o then/catch        
-    /*
-    $http.get('/v1/fotos')
-        .then(function(response) {
-            $scope.fotos = response.data;
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    */
+        },
+        function(erro){
+            console.log(erro);
+        }
+    );
 
     $scope.remover = function(foto) {
         console.log(foto);
 
-        $http.delete('v1/fotos/' + foto._id)
-            .success(function() {
+        recursoFoto.delete({ fotoId : foto._id }, 
+            function() {
                 let indiceFoto = $scope.fotos.indexOf(foto);
                 $scope.fotos.splice(indiceFoto, 1);
                 $scope.mensagem = 'A foto ' + foto.titulo + ' foi removida com sucesso';
-
-            })
-            .error(function(erro){
+            },
+            function(erro) {
                 console.log(erro);
                 $scope.mensagem = 'Problema ao remover a foto';
-            });
-
+            }
+        );
     }
 
 });

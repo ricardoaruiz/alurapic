@@ -221,3 +221,11 @@ Curso AngularJS: crie webapps poderosas
 	5) Mais uma novidade! Bootstrap é fantástico, mas termos que decorar zilhões de classes não é uma tarefa trivial. Já isolamos a complexidade da marcação do panel-default em uma diretiva, agora faremos a mesma coisa, criando a diretiva meuBotaoPerigo. Quando usarmos essa diretiva, sequer precisaremos adicionar as classes do Bootstrap, justamente por estarem encapsuladas em sua definição. Sua interface de uso será nome e acao. O 'nome' usa o já conhecido modificador @ no escopo isolado da diretiva, porém, acao usará um novo. Lembra dele? Ele é usado quando queremos avaliar uma expressão dentro da diretiva. Essa expressão avaliada geralmente roda no contexto de um controller e a diretiva nada sabe do que acontece.
 
 	6) Com a diretiva criada, faça a troca do botão Remover por ela, não esquecendo de passar todos os dados que ela precisa através de usa interface.
+
+- 10 - E se o nosso back-end mudasse?
+
+	Mais um avanço do seu aprendizado, agora alterando a aplicação, blindando-a contra mudanças no back-end, inclusive organizando ainda melhor seu código!
+
+	1) Chega de URL's espalhadas, centralize-as em um lugar apenas, isto é, dentro de um serviço. Serviços podem ser compartilhados entre controllers e acessíveis através de injeção. No arquivo public/js/services/meus-servicos, declare um novo módulo chamado meusServiços, que dependerá do módulo ngResource. Crie o serviço recursoFoto que retorno um $resource configurado, inclusive com a função update que vimos.
+
+	2) Altere FotoControler e FotosController para que faça uso de recursoFoto.
