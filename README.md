@@ -229,3 +229,13 @@ Curso AngularJS: crie webapps poderosas
 	1) Chega de URL's espalhadas, centralize-as em um lugar apenas, isto é, dentro de um serviço. Serviços podem ser compartilhados entre controllers e acessíveis através de injeção. No arquivo public/js/services/meus-servicos, declare um novo módulo chamado meusServiços, que dependerá do módulo ngResource. Crie o serviço recursoFoto que retorno um $resource configurado, inclusive com a função update que vimos.
 
 	2) Altere FotoControler e FotosController para que faça uso de recursoFoto.
+
+- 11 - Melhorando a experiência, agora do desenvolvedor
+
+	Hora de praticar, desta vez isolando a lógica do cadastro em um serviço exclusivo. Os passos gerais são:
+
+	1) Isole o código de FotoController que inclui ou altera uma foto no serviço cadastroDeFoto.
+
+	2) Altere FotoController para usar o novo serviço.
+
+	
