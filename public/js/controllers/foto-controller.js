@@ -2,8 +2,8 @@
  * recursoFoto está sendo injetado pelo angular, pois está definido em "meus-servicos.js" como uma factory 
  */
 angular.module('alurapic').controller('FotoController', 
-    ['$scope', 'recursoFoto', 'cadastroFoto', '$routeParams', 
-    function($scope, recursoFoto, cadastroFoto, $routeParams){
+    ['$scope', 'recursoFoto', 'cadastroFoto', '$routeParams', '$location', 
+    function($scope, recursoFoto, cadastroFoto, $routeParams, $location){
 
     $scope.foto = {};
     $scope.mensagem = '';
@@ -27,6 +27,7 @@ angular.module('alurapic').controller('FotoController',
                 $scope.mensagem = data.mensagem;
                 if(data.inclusao) {
                     $scope.foto = {};
+					$location.path('/fotos');
                 }
             })
             .catch(function(data){

@@ -19,9 +19,12 @@
         <script src="js/controllers/foto-controller.js"></script>
         <script src="js/controllers/fotos-controller.js"></script>
         <script src="js/controllers/grupos-controller.js"></script>
+		<script src="js/config/interceptors.config.js"></script>
+		<script src="js/interceptor/loading-interceptor.js"></script>
     </head>
     <body>
-        <div class="container">
+		<div ng-include="'partials/load.html'"></div>
+        <div class="container" ng-hide="carregando">
             <ng-view></ng-view>
         </div>        
     </body>
