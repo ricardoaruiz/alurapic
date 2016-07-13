@@ -20,7 +20,8 @@
 <div class="row">
     <meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter : filtro" titulo="{{foto.titulo}}">
             <minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
-            <a href="/fotos/edit/{{foto._id}}" class="btn btn-primary btn-block">Editar</a>
+            <!--<a href="/fotos/edit/{{foto._id}}" class="btn btn-primary btn-block">Editar</a>-->
+			<button type="button" class="btn btn-primary btn-block" ng-click="editar(foto)">Editar</button>
             <meu-botao-perigo nome="Remover" acao="remover(foto)"></meu-botao-perigo>
     </meu-painel>
 </div>

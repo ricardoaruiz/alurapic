@@ -1,7 +1,7 @@
 /**
  * recursoFoto está sendo injetado pelo angular, pois está definido em "meus-servicos.js" como uma factory 
  */
-angular.module('alurapic').controller('FotosController', function($scope, recursoFoto){
+angular.module('alurapic').controller('FotosController', function($scope, recursoFoto, $location){
 
     $scope.fotos = [];
     $scope.filtro = '';
@@ -30,6 +30,10 @@ angular.module('alurapic').controller('FotosController', function($scope, recurs
                 $scope.mensagem = 'Problema ao remover a foto';
             }
         );
-    }
+    };
+	
+	$scope.editar = function(foto) {
+		$location.path('/fotos/edit/' + foto._id);
+	};
 
 });

@@ -35,4 +35,8 @@ angular.module('alurapic').controller('FotoController',
             });
         }
     }
+	
+	$scope.voltar = function() {
+		$location.path('/fotos');
+	}
 }]);
